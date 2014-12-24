@@ -82,16 +82,21 @@ public:
     
     Php::Value div(Php::Parameters &params)
     {
+        Php::Value t=params[0];
+        Complex *b=(Complex*)t.implementation();
+        
+        
         
     }
     
     Php::Value conjugate()
     {
         Complex *t=new Complex();
+        
         t->r=r;
         t->i=-i;
         
-        return t;
+        return Php::Object("Complex", t);
     }
 };
 

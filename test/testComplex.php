@@ -1,6 +1,6 @@
 <?php
 
-//use Complex;
+use Complex;
 
 $c=new Complex(-3,-4);
 echo "Mod of $c is: ".$c->mod()."\n";
@@ -27,12 +27,12 @@ $res=$a->mul($b)->add($c);
 
 echo $res."\n";
 
-
-echo "Conguate Complex of above: ".$res->conjugate()."\n";
+echo "Conguate Complex of $b is: ".($b->conjugate())."\n";
 echo "=============================\n";
 
+echo ($b->add($b->conjugate()))."\n";
+echo "=============================\n";
 
-//echo ((string)$res);
 
 
 
