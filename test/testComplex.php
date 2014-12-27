@@ -17,8 +17,8 @@ $b=new tr\Complex(1,2);
 
 $res=new tr\Complex();
 echo ($res)."\n";
-$res=$a->add($b)->sub($c)->add($d);
-echo ($res)."\n";
+echo ($a->add($b)->sub($c)->add($d))."\n";
+//echo ($res)."\n";
 echo "=============================\n";
 
 $a=new tr\Complex(1,2);
@@ -50,7 +50,7 @@ try
 }
 catch(Exception $e)
 {
-    echo "Caught exception.\n";
+    echo "Caught exception: ".$e->getMessage()."\n";
 }
 echo "=============================\n";
 
@@ -75,7 +75,7 @@ try
 }
 catch (Exception $e)
 {
-    echo "Caught exception: $e\n";
+    echo "Caught exception: ".$e->getMessage()."\n";
 }
 
 $a=new tr\Complex(1,1);

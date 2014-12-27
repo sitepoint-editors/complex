@@ -30,6 +30,7 @@ NAME				=	complex
 #
 
 INI_DIR				=	/etc/php5/cli/conf.d
+#INI_DIR				=	/etc/php5/apache2/conf.d
 
 
 #

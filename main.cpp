@@ -4,6 +4,9 @@
 #include <sstream>
 
 class Complex : public Php::Base {
+    const double PI = 3.1415926;
+    const double EPS = 1e-12;
+    
 private:
     double r = 0, i = 0;
 
@@ -38,30 +41,28 @@ public:
     }
 
     Php::Value phi() const {
-        const double PI=3.1415926;
-        const double EPS=1e-12;
-        if(i*i<EPS) // Falls on X axis
+
+        if (i * i < EPS) // Falls on X axis
         {
-            if(r*r <EPS) // X is also 0
+            if (r * r < EPS) // X is also 0
             {
                 throw Php::Exception("Undefined");
-            }
-            else if (r>0)
+            } else if (r > 0)
                 return 0;
-            else 
+            else
                 return PI;
         }
-        
-        if(r*r<EPS) //Falls on Y axis
+
+        if (r * r < EPS) //Falls on Y axis
         {
-            if(i*i<EPS)
+            if (i * i < EPS)
                 throw Php::Exception("Undefined");
-            else if (i>0)
-                return PI/2;
+            else if (i > 0)
+                return PI / 2;
             else
-                return -PI/2;
+                return -PI / 2;
         }
-        
+
         return atan2(i, r);
     }
 
@@ -114,7 +115,7 @@ public:
 
         double t1 = b->mod() * b->mod();
 
-        if (t1 < 1E-9)
+        if (t1 < EPS)
             throw Php::Exception("Division by zero");
 
         double tr = r * (double) (b->getReal()) + i * (double) (b->getImage());
@@ -158,12 +159,12 @@ extern "C" {
 
         complex.method("mod", &Complex::mod,{});
         complex.method("phi", &Complex::phi,{});
-        
+
         complex.method("real", &Complex::getReal,{});
         complex.method("image", &Complex::getImage,{});
-        
+
         complex.method("__construct", &Complex::__construct);
-        
+
         complex.method("add", &Complex::add,{
             Php::ByVal("op", "tr\\Complex", false, true)
         });
@@ -176,7 +177,7 @@ extern "C" {
         complex.method("div", &Complex::div,{
             Php::ByVal("op", "tr\\Complex", false, true)
         });
-        
+
         complex.method("conjugate", &Complex::conjugate,{});
 
         complex.method("__toString", &Complex::__toString);
